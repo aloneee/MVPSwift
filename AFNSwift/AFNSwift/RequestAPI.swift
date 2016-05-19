@@ -38,7 +38,6 @@ extension RequestParameters {
     }
 }
 
-
 enum RequestAPI: FetchDataProtocol, RequestParameters {
     
     case GET, POST

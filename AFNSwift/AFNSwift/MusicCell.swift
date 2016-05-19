@@ -9,49 +9,50 @@
 import UIKit
 
 protocol MusicCellDataSource {
-    var title: String {
+    var title: String? {
         get
     }
     
-    var  description: String {
+    var  description: String? {
         get
     }
     
-    var artistName: String {
+    var artistName: String? {
         get
     }
     
-    var posterPic: String {
+    var posterPic: String? {
+        get
+    }
+    var url: String? {
         get
     }
     
-    var url: String{
-        get
-    }
 }
 
-//extension MusicCellDataSource {
-//    var title: String {
-//        return "aaaaa"
-//    }
-//    
-//    var description: String {
-//        return "aaaaa"
-//    }
-//    
-//    var artistName:String {
-//        return "aaaaa"
-//    }
-//    
-//    var posterPic:String {
-//        return "aaaaa"
-//    }
-//    
-//    var url:String {
-//        return "aaaaa"
-//    }
-//    
-//}
+
+extension MusicCellDataSource {
+    var title: String {
+        return "aaaaa"
+    }
+    
+    var description: String {
+        return "aaaaa"
+    }
+    
+    var artistName:String {
+        return "aaaaa"
+    }
+    
+    var posterPic:String {
+        return "aaaaa"
+    }
+    
+    var url:String {
+        return "aaaaa"
+    }
+    
+}
 
 protocol MusicCellDelegate {
     
@@ -128,20 +129,21 @@ final class MusicCell: UITableViewCell {
     
     func configCell(withDatasource dataSource: MusicCellDataSource, delegate: MusicCellDelegate? ){
         
-        self.dataSource = dataSource
-        self.delegate = delegate
-        
-        let url = dataSource.posterPic
+        self.dataSource     = dataSource
+        self.delegate       = delegate
+
+        let url             = dataSource.posterPic!
         iconImgView.sd_setImageWithURL(NSURL(string: url))
-        
-        titleView.text = dataSource.title
+
+        titleView.text      = dataSource.title
         titleView.textColor = delegate?.titleColor
-        titleView.font = delegate?.titleFont
-        
-        artisView.text = dataSource.artistName
+        titleView.font      = delegate?.titleFont
+
+        artisView.text      = dataSource.artistName
         artisView.textColor = delegate?.artisColor
-        artisView.font = delegate?.artisFont
+        artisView.font      = delegate?.artisFont
     }
     
 }
+
 

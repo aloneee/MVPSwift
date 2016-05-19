@@ -11,11 +11,9 @@ import UIKit
 final class PlayerViewController: UIViewController {
 
     var music: Music?
-    
-    //MARK: -- ViewController life cycle
+    //MARK: -- ViewController life  cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.view.backgroundColor = UIColor.purpleColor()
         self.title = self.music?.title
        
@@ -34,7 +32,6 @@ final class PlayerViewController: UIViewController {
         let player = PlayerView(frame: CGRect(x: 10, y: 200, width: UIScreen.mainScreen().bounds.width - 20, height: 200))
         player.videoURL = self.music?.url
         self.view.addSubview(player)
-        
     }
  
     deinit{

@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 final class ViewController: UIViewController{
     
     var table: UITableView?
@@ -22,8 +23,8 @@ final class ViewController: UIViewController{
         static var musicsURL = "http://mapi.yinyuetai.com/video/list.json?D-A=0&deviceinfo=%7B%22aid%22%3A%2210201024%22%2C%22os%22%3A%22Android%22%2C%22ov%22%3A%224.2.2%22%2C%22rn%22%3A%22480*800%22%2C%22dn%22%3A%22H30-T00%22%2C%22cr%22%3A%2246002%22%2C%22as%22%3A%22WIFI%22%2C%22uid%22%3A%22c5aa133090bd0d5d9ecd4163bb27f3cb%22%2C%22clid%22%3A110013000%7D"
     }
 
-//MARK: ----
-//MARK: ---ViewController life cycle
+   //MARK: ----
+   //MARK: ---ViewController life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -34,7 +35,7 @@ final class ViewController: UIViewController{
         table?.delegate = self
         table?.dataSource = self
         
-        table!.registerNib(UINib(nibName: "MusicCell",bundle: nil), forCellReuseIdentifier: Identifier.musicCell)
+        table?.registerNib(UINib(nibName: "MusicCell",bundle: nil), forCellReuseIdentifier: Identifier.musicCell)
         
         //fetch musics Block
         let fetchMusics = {() -> Void in
@@ -57,9 +58,9 @@ final class ViewController: UIViewController{
             }
         }
         
-        table!.mj_header = MJRefreshHeader(refreshingBlock: fetchMusics)
+        table?.mj_header = MJRefreshHeader(refreshingBlock: fetchMusics)
         
-        self.view.addSubview(table!)
+        view.addSubview(table!)
        
         fetchMusics()
     }

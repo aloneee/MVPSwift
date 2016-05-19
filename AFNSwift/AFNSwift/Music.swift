@@ -7,16 +7,15 @@
 //
 
 struct Music: MusicCellDataSource {
+    var title: String?
     
-    var title: String = ""
+    var description: String?
     
-    var description: String = ""
+    var artistName:String?
     
-    var artistName:String = ""
+    var posterPic:String?
     
-    var posterPic:String = ""
-    
-    var url:String = ""
+    var url:String?
     
 }
 
@@ -40,27 +39,21 @@ extension Music {
     
     static func musicWithDict<T>(dict:[String:T]) -> Music {
         
-        return Music(title: dict["title"]       as! String,
-               description: dict["description"] as! String,
-                artistName: dict["artistName"]  as! String,
-                 posterPic: dict["posterPic"]   as! String,
-                       url: dict["url"]         as! String)
+        return Music(title: dict["title"]       as? String,
+               description: dict["description"] as? String,
+                artistName: dict["artistName"]  as? String,
+                 posterPic: dict["posterPic"]   as? String,
+                       url: dict["url"]         as? String)
     }
     
     static func musicsWithDictArray<T>(dictArray:[[String:T]]) ->[Music]? {
         
-        if dictArray.count == 0 {
+        guard dictArray.count > 0 else {
             return nil
         }
-        var musics = [Music]()
-        
-        for dict:[String : T] in dictArray {
-            
-            if dict["url"] != nil{
-                musics += [self.musicWithDict(dict)]
-            }
-        }
-        return musics
+        return dictArray.map({ (dict:[String:T]) -> Music in
+            return musicWithDict(dict)
+        })
     }
     
 }
