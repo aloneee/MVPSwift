@@ -44,5 +44,8 @@ final class PlayerViewController: UIViewController {
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
 }
+/**
+*  dfadfdsfd
+*/
 
 
